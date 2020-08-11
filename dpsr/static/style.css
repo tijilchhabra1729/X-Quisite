@@ -1,9 +1,7 @@
 body{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    background-color: black;
 }
-*
-{
+*{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -15,40 +13,38 @@ section{
     display: flex;
     border: 2px solid black;
 }
-section .slide {
+.slide{
     position: relative;
     height: 100%;
-    background: green;
+    background: white;
     flex: 1;
     border-right: 2px solid black;
     overflow: hidden;
     transition: 0.5s ease-in-out;
 }
-section .slide:last-child
-{
+.slide:last-child{
     border-right: none;
 }
-section .slide:hover
-{
+.slide:hover{
     flex-grow: 5;
 }
-section .slide:nth-child(1){
+.slide:nth-child(1){
     background: url(il.png);
     background-position: center center;
 }
-section .slide:nth-child(2){
-    background: url(Screenshot\ \(274\).png);
+.slide:nth-child(2){
+    background: url(jk.png);
     background-position: center center;
 }
-section .slide:nth-child(3){
-    background: url(Screenshot\ \(275\).png);
+.slide:nth-child(3){
+    background: url(hi.png);
     background-position: center center;
 }
-section .slide:nth-child(4){
-    background: url(Screenshot\ \(273\).png);
+.slide:nth-child(4){
+    background: url(ha.png);
     background-position: center center;
 }
-section .slide .content {
+.content{
     position: absolute;
     bottom: 0;
     margin: 40px;
@@ -60,8 +56,7 @@ section .slide .content {
     transition: 0s;
     transform: translateY(100px);
 }
-section .slide:hover .content
-{
+.slide:hover .content{
     visibility: visible;
     opacity: 1;
     transition: 0.5s;
