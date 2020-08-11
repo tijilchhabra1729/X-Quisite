@@ -22,6 +22,8 @@ login_manager.login_view = 'users.login'
 
 from dpsr.users.views import users
 from dpsr.home.views import home
+from dpsr.car.views import cars
 
 app.register_blueprint(home)
 app.register_blueprint(users)
+app.register_blueprint(cars)

@@ -17,6 +17,7 @@ class User(db.Model,UserMixin):
     username = db.Column(db.String(64),unique = True,index = True)
     password_hash = db.Column(db.String(128))
 
+    car = db.relationship('Car' , backref = 'user' , lazy = 'dynamic')
 
     def __init__(self, fname, email, username, password):
         self.email = email
@@ -27,3 +28,22 @@ class User(db.Model,UserMixin):
 
     def check_password(self,password):
         return check_password_hash(self.password_hash,password)
+
+class Car(db.Model , UserMixin):
+    __tablename__ = 'cars'
+
+    id = db.Column(db.Integer , primary_key = True)
+    name = db.Column(db.String)
+    seats = db.Column(db.Integer)
+    price = db.Column(db.Integer)
+    available = db.Column(db.String , default = 'No')
+    driver = db.Column(db.String)
+
+    userid = db.Column(db.Integer , db.ForeignKey('users.id'))
+
+    def __init__(self, name ,seats ,price ,userid ,driver):
+        self.name = name
+        self.seats = seats
+        self.price = price
+        self.driver = driver
+        self.userid = userid
