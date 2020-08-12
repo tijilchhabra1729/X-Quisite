@@ -26,6 +26,7 @@
   <nav class="site-header fixed-top py-1 font-weight-bold navigation ">
       <div class="container d-flex flex-column flex-md-row justify-content-between">
         {%if current_user.is_authenticated%}
+        <a class = "clicks" href="{{url_for('cars.show_car')}}">Cars</a>
           <a class = "clicks" href="{{url_for('users.logout')}}">Logout</a>
 
         {%else%}

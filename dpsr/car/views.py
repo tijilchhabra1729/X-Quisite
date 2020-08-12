@@ -2,7 +2,7 @@ from flask import render_template,url_for,flash,redirect,request,Blueprint
 from flask_login import login_user, current_user, logout_user, login_required
 from dpsr import  db
 from dpsr.models import User , Car
-from dpsr.car.forms import MakeCarForm
+from dpsr.car.forms import MakeCarForm , UpdateCarForm
 from sqlalchemy import asc
 from dpsr.car.picture_handler import add_car_pic
 
@@ -41,3 +41,42 @@ def show_car():
 def single_car(car_id):
     car = Car.query.get_or_404(car_id)
     return render_template('single_car.htm', car = car)
+
+@cars.route('/<car_id>/updatecar' ,methods = ['GET' , 'POST'])
+@login_required
+def updatecar(car_id):
+    car = Car.query.get_or_404(car_id)
+    form = UpdateCarForm()
+    if car.user.id != current_user.id:
+        abort(403)
+    else:
+        if form.validate_on_submit():
+            car.name = form.name.data
+            car.price = form.price.data
+            car.seats = form.seats.data
+            car.driver = form.driver.data
+            car.available = form.available.data
+            if form.picture.data:
+                id = current_user.id
+                pic = add_car_pic(form.picture.data,id)
+                car.car_image = pic
+            db.session.commit()
+            return redirect(url_for('cars.show_car'))
+        elif request.method == 'GET':
+            form.name.data = car.name
+            form.price.data = car.price
+            form.seats.data = car.seats
+            form.driver.data = car.driver
+            form.available.data = car.available
+    return render_template('updatecar.htm' , form = form , car_id = car_id)
+
+@cars.route('/<car_id>/deletecar' , methods = ['GET','POST'])
+@login_required
+def delete_car(car_id):
+    car = Car.query.get_or_404(car_id)
+    if current_user != car.user:
+        abort(403)
+    else:
+        db.session.delete(car)
+        db.session.commit()
+    return redirect(url_for('cars.show_car'))

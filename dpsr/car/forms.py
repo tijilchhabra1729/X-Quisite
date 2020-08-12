@@ -14,3 +14,12 @@ class MakeCarForm(FlaskForm):
     picture = FileField('A picture of your car please' , validators=[DataRequired()])
     driver = RadioField('Does your car come with a driver' , choices=[('Yes','It Does'),('No','It does not')])
     submit = SubmitField('Let people see')
+
+class UpdateCarForm(FlaskForm):
+    name = StringField('What is the name of your car' , validators=[DataRequired()])
+    seats = IntegerField('How many seats does your car have' , validators=[DataRequired()])
+    price = IntegerField('What is the price of your car' , validators=[DataRequired()])
+    picture = FileField('A picture of your car please')
+    driver = RadioField('Does your car come with a driver' , choices=[('Yes','It Does'),('No','It does not')])
+    available = RadioField('Is your car available' , choices=[('Yes','Yes'),('No','No')])
+    submit = SubmitField('Update')
