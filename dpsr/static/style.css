@@ -17,6 +17,9 @@ display: inline-flex;
     position: relative;
     z-index: 1;
 }
+a {
+    text-decoration: none;
+}
 .paint:before {
     content: '';
     position: absolute;
@@ -208,3 +211,30 @@ display: inline-flex;
     transform: translateY(0);
 }
 
+#about {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    background-attachment: fixed; 
+    background-size: cover;
+     background-color: white;
+}
+#spill{
+    width: 60%;
+    height: 100%;
+    position: relative;
+    background: url(bg.jpg);
+    background-size: cover;
+}
+#spill:before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url(splash.jpg);
+    background-size: cover;
+    background-position: center;
+    mix-blend-mode: screen;
+}
