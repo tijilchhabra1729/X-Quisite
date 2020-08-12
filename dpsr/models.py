@@ -36,14 +36,16 @@ class Car(db.Model , UserMixin):
     name = db.Column(db.String)
     seats = db.Column(db.Integer)
     price = db.Column(db.Integer)
-    available = db.Column(db.String , default = 'No')
+    car_image = db.Column(db.String(64), nullable = False)
+    available = db.Column(db.String , default = 'Yes')
     driver = db.Column(db.String)
 
     userid = db.Column(db.Integer , db.ForeignKey('users.id'))
 
-    def __init__(self, name ,seats ,price ,userid ,driver):
+    def __init__(self, name ,seats ,price ,userid ,driver , car_image):
         self.name = name
         self.seats = seats
         self.price = price
         self.driver = driver
         self.userid = userid
+        self.car_image = car_image

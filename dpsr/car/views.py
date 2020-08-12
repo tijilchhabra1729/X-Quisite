@@ -4,6 +4,7 @@ from dpsr import  db
 from dpsr.models import User , Car
 from dpsr.car.forms import MakeCarForm
 from sqlalchemy import asc
+from dpsr.car.picture_handler import add_car_pic
 
 cars = Blueprint('cars', __name__)
 
@@ -12,11 +13,14 @@ cars = Blueprint('cars', __name__)
 def make_car():
     form = MakeCarForm()
     if form.validate_on_submit():
+        id = current_user.id
+        pic = add_car_pic(form.picture.data,id)
         car = Car(name = form.name.data,
                   seats = form.seats.data,
                   price = form.price.data,
                   driver = form.driver.data,
-                  userid = current_user.id)
+                  userid = current_user.id,
+                  car_image = pic)
         db.session.add(car)
         db.session.commit()
         return redirect(url_for('cars.show_car'))
@@ -27,7 +31,13 @@ def make_car():
 @login_required
 def show_car():
     car = []
-    cars = Car.query.order_by(Car.seats.asc())
+    cars = Car.query.order_by(Car.seats.asc()).filter_by(available = 'Yes')
     for c in cars:
         car.append(c)
     return render_template('all_car.htm' , car = car)
+
+@cars.route('/<car_id>/detail' , methods = ['GET' , 'POST'])
+@login_required
+def single_car(car_id):
+    car = Car.query.get_or_404(car_id)
+    return render_template('single_car.htm', car = car)
