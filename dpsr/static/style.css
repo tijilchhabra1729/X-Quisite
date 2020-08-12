@@ -1,5 +1,5 @@
 body{
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
 html{
     scroll-behavior: smooth;
@@ -8,6 +8,30 @@ html{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+.paint {
+    position: relative;
+display: inline-flex;
+}
+.paint span {
+    position: relative;
+    z-index: 1;
+}
+.paint:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background-image: url(btn.png);
+    background-size: cover !important;
+    transform-origin: left;
+    transition: 0.5s;
+}
+.paint:hover:before{
+    width: 100%;
+
 }
 .container {
     width: 100%;
@@ -61,6 +85,7 @@ html{
     right: 0;
     width: 25%;
     background: #fff;
+    border-left: 1px solid black;
     height: 100%;
     transform: skewX(0deg) translate(100%,0);
     transform-origin: top right;

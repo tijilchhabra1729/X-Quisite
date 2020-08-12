@@ -2,7 +2,7 @@
 <html>
 <head>
 
-    <title>Ghoom</title>
+    <title>Travel Rite</title>
     {%block head%}
 
     {%endblock%}
@@ -62,18 +62,18 @@
   </div>
   <div class="navigation-menu">
       <ul>
-        <li><a href="https://www.youtube.com/watch?v=EZqhWu8GJ6U">Home</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Discover</a></li>
-        <li><a href="#">FAQ</a></li>
-        <li><a href="#">Contact</a></li>
+        <li><a class="paint" href="#"><span>Home</span></a></li>
+        <li><a class="paint" href="#"><span>About</span></a></li>
+        <li><a class="paint" href="#"><span>Discover</span></a></li>
+        <li><a class="paint" href="#"><span>FAQ</span></a></li>
+        <li><a class="paint" href="#"><span>Contact</span></a></li>
         {%if current_user.is_authenticated%}
-        <li><a  href="{{url_for('cars.show_car')}}">Cars</a></li>
-        <li><a  href="{{url_for('users.logout')}}">Logout</a></li>
+        <li><a  class="paint" href="{{url_for('cars.show_car')}}"><span>Cars</span></a></li>
+        <li><a  class="paint" href="{{url_for('users.logout')}}"><span>Logout</span></a></li>
 
         {%else%}
-         <li><a  href="{{url_for('users.register')}}">Register</a></li>
-         <li><a  href="{{url_for('users.login')}}">Login</a></li>
+         <li><a  class="paint" href="{{url_for('users.register')}}"><span>Register</span></a></li>
+         <li><a  class="paint" href="{{url_for('users.login')}}"><span>Login</span></a></li>
         {%endif%}
     </ul>
   </div>
