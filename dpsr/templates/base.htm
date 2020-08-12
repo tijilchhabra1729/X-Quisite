@@ -18,35 +18,26 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/426856ac5f.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
         <link rel="stylesheet" type = "text/css" href="{{url_for('static', filename="style.css")}}">
         <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script type="text/javascript">
-        $(window).on('scroll', function(){
-            if($(window).scrollTop()){
-                $('nav').addClass('white');
-            }
-            else{
-                $('nav').removeClass('white');
-            }
-        })
-    </script>
+        <script type="text/javascript">
+          $(window).on('scroll', function(){
+              if($(window).scrollTop()){
+                  $('.navigation-button').addClass('white');
+              }
+              else{
+                  $('.navigation-button').removeClass('white');
+              }
+          })
+      </script>
 </head>
 <body>
 
-  <!-- <nav class="site-header fixed-top py-1 font-weight-bold navigation ">
-      <div class="container d-flex flex-column flex-md-row justify-content-between">
-        {%if current_user.is_authenticated%}
-        <a class = "clicks" href="{{url_for('cars.show_car')}}">Cars</a>
-          <a class = "clicks" href="{{url_for('users.logout')}}">Logout</a>
-
-        {%else%}
-          <a class = "clicks" href="{{url_for('users.register')}}">Register</a>
-          <a class="clicks" href="{{url_for('users.login')}}">Login</a>
-        {%endif%}
-      </div>
-  </nav> -->
-  <nav>
+  <!-- <nav>
     <div class="logo">
         <img src="{{url_for('static', filename="li.png")}}" alt="not loading" >
     </div>
@@ -64,8 +55,55 @@
          <li><a class="clicks" href="{{url_for('users.login')}}">Login</a></li>
         {%endif%}
     </ul>
+</nav> -->
+<nav class="navigation-wrapper">
+  <div class="navigation-button">
+    <i class="fa fa-bars"></i>
+  </div>
+  <div class="navigation-menu">
+      <ul>
+        <li><a href="https://www.youtube.com/watch?v=EZqhWu8GJ6U">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Discover</a></li>
+        <li><a href="#">FAQ</a></li>
+        <li><a href="#">Contact</a></li>
+        {%if current_user.is_authenticated%}
+        <li><a  href="{{url_for('cars.show_car')}}">Cars</a></li>
+        <li><a  href="{{url_for('users.logout')}}">Logout</a></li>
+
+        {%else%}
+         <li><a  href="{{url_for('users.register')}}">Register</a></li>
+         <li><a  href="{{url_for('users.login')}}">Login</a></li>
+        {%endif%}
+    </ul>
+  </div>
 </nav>
-  <br><br><br><br>
+<script>
+  var navButton = document.querySelector('.navigation-button');
+var navMenu = document.querySelector('.navigation-menu');
+var win = window;
+
+function openMenu(event) {
+
+navButton.classList.toggle('active');
+navMenu.classList.toggle('active');
+
+event.preventDefault();
+event.stopImmediatePropagation();
+}
+
+function closeMenu(event) {
+if (navButton.classList.contains('active')) {
+  navButton.classList.remove('active');
+  navMenu.classList.remove('active');
+}
+}
+navButton.addEventListener('click', openMenu, false);
+
+win.addEventListener('click',closeMenu, false);
+  
+</script>
+
   {%block content%}
   {%endblock%}
 </body>
