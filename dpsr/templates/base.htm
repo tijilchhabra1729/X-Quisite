@@ -53,7 +53,7 @@
     <ul>
         <li> <a href="#home">Home</a> </li>
         <li> <a href="#">Discover</a> </li>
-        <li> <a href="#">Rent</a> </li>
+        <li> <a href="{{url_for('faqs.all_faq')}}">FAQ</a> </li>
         <li> <a href="#">Suggest</a> </li>
         {%if current_user.is_authenticated%}
         <li><a class = "clicks" href="{{url_for('cars.show_car')}}">Cars</a></li>

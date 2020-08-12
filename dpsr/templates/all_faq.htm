@@ -11,9 +11,9 @@
 </form>
 <div class="container border" style = "width:25rem;">
   {%for result in results%}
-  <div class="jumbotron" style = "height:6rem;">
+  <div class="jumbotron" style = "height:16rem;">
     <br>
-    <a href="{{url_for('faqs.singleq' , q_id = result.id)}}"><h5 align = "center">{{result.question[:15]}}...</h4></a>
+    <a href="{{url_for('faqs.singleq' , q_id = result.id)}}"><h5 align = "center">{{result.question}}</h4></a>
 
     <br><br>
   </div>
