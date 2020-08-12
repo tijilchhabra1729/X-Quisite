@@ -1,6 +1,24 @@
 {%extends 'base.htm'%}
+
 {%block content%}
-  {%for c in car%}
-    <h1>{{c.name}}</h1>
-  {%endfor%}
+<br><br><br>
+{%for r in car%}
+<div style="display: inline-block;">
+    <div class="card" style="width: 20rem; display:inline-block; padding: 1em;">
+      <a class="card-title"><h3 style="font-weight: 800;">{{r.name}}</h3></a>
+      <!-- <a href="{{url_for('static' , filename = r.image)}}">
+      <img height="190vh" width = "100vw" src="{{url_for('static' , filename = r.image)}}" class="card-img-top" alt="image can't load">
+      </a> -->
+      <div class="card-body">
+        <h5 style="font-weight: 800;" class="card-title">Price :- ₹{{r.price}}(per day)</h5>
+
+        <p style="font-family: 'Josefin Sans', sans-serif; font-size: larger;" class="card-text">does it come with driver : {{r.driver}}</p>
+    </div>
+    <h6>Contact {{r.user.email}}</h3>
+
+  </div></div>
+
+
+
+{%endfor%}
 {%endblock%}

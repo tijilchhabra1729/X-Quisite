@@ -17,7 +17,7 @@
       {%endif%}
     </div>
     <div class="form-group">
-      {{form.price.label}}{{form.price(class = 'form-control col-md-6' ,placeholder="price" )}}
+      {{form.price.label}}(per day){{form.price(class = 'form-control col-md-6' ,placeholder="price" )}}
       {%if form.price.errors%}
         {%for error in form.price.errors%}
           <small class = 'text-danger'>{{error}}</small>
