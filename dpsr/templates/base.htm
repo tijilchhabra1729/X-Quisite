@@ -56,16 +56,16 @@
         <li> <a href="#">Rent</a> </li>
         <li> <a href="#">Suggest</a> </li>
         {%if current_user.is_authenticated%}
-        <li><a class = "clicks" href="{{url_for('cars.show_car')}}">Cars</a></li> 
-        <li><a class = "clicks" href="{{url_for('users.logout')}}">Logout</a></li>  
+        <li><a class = "clicks" href="{{url_for('cars.show_car')}}">Cars</a></li>
+        <li><a class = "clicks" href="{{url_for('users.logout')}}">Logout</a></li>
 
         {%else%}
-         <li><a class = "clicks" href="{{url_for('users.register')}}">Register</a></li> 
-         <li><a class="clicks" href="{{url_for('users.login')}}">Login</a></li> 
+         <li><a class = "clicks" href="{{url_for('users.register')}}">Register</a></li>
+         <li><a class="clicks" href="{{url_for('users.login')}}">Login</a></li>
         {%endif%}
     </ul>
 </nav>
-  
+  <br><br><br><br>
   {%block content%}
   {%endblock%}
 </body>

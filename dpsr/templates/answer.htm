@@ -1,0 +1,12 @@
+{%extends 'base.htm'%}
+{%block content%}
+<form method="POST">
+  {{form.hidden_tag()}}
+  <div class="form-group">
+    {{form.answer.label}}{{form.answer(class = 'form-control col-md-6' ,placeholder="Answer" )}}
+  </div>
+  <div class="form-group">
+    {{form.submit(class ="btn btn-primary")}}
+  </div>
+</form>
+{%endblock%}

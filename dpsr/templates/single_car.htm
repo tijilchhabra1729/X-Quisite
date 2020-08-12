@@ -4,6 +4,9 @@
   Name = {{car.name}} <br>
   No. of Seats = {{car.seats}} <br>
   Price = {{car.price}}(per day) <br>
+  <a href="{{url_for('static' , filename = car.car_image)}}">
+  <img height="190vh" width = "100vw" src="{{url_for('static' , filename = car.car_image)}}" class="card-img-top" alt="image can't load">
+</a><br>
   Driver = {{car.driver}} <br>
   Available = {{car.available}}<br>
   {%if current_user == car.user%}

@@ -1,0 +1,24 @@
+{%extends 'base.htm'%}
+{%block content%}
+<form method="POST">
+  {{form.hidden_tag()}}
+  <div class="form-group">
+    {{form.search.label}}{{form.search(   class = 'form-control col-md-6' ,placeholder="Search" )}}
+  </div>
+  <div class="form-group">
+    {{form.submit(class ="btn btn-primary")}} <a href="{{url_for('faqs.all_faq')}}" class = 'btn btn-primary'>Refresh</a>
+  </div>
+</form>
+<div class="container border" style = "width:25rem;">
+  {%for result in results%}
+  <div class="jumbotron" style = "height:6rem;">
+    <br>
+    <a href="{{url_for('faqs.singleq' , q_id = result.id)}}"><h5 align = "center">{{result.question[:15]}}...</h4></a>
+
+    <br><br>
+  </div>
+
+  {%endfor%}
+</div>
+
+{%endblock%}

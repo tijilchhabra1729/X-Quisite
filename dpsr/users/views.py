@@ -32,25 +32,23 @@ def register():
 @users.route('/login',methods=['GET','POST'])
 def login():
     error = ''
-    if current_user.is_authenticated == False:
-        form = LoginForm()
-        if form.validate_on_submit():
 
-            user = User.query.filter_by(email=form.email.data).first()
+    form = LoginForm()
+    if form.validate_on_submit():
 
-            if user is not None and user.check_password(form.password.data) :
+        user = User.query.filter_by(email=form.email.data).first()
 
-                login_user(user)
-                flash('Log in Success!')
+        if user is not None and user.check_password(form.password.data) :
 
-                next = request.args.get('next')
-                if next == None or not next[0] =='/':
-                    next = url_for('home.index')
-                return redirect(next)
-            elif user is not None and user.check_password(form.password.data) == False:
-                error = 'Wrong Password'
-            elif user is None:
-                error = 'No such login Pls create one'
-        return render_template('login.htm', form=form, error = error)
-    else:
-        return render_template('login_logout.htm')
+            login_user(user)
+            flash('Log in Success!')
+
+            next = request.args.get('next')
+            if next == None or not next[0] =='/':
+                next = url_for('home.index')
+            return redirect(next)
+        elif user is not None and user.check_password(form.password.data) == False:
+            error = 'Wrong Password'
+        elif user is None:
+            error = 'No such login Pls create one'
+    return render_template('login.htm', form=form, error = error)

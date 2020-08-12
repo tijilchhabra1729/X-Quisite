@@ -1,0 +1,17 @@
+{%extends 'base.htm'%}
+{%block content%}
+<h5>{{question.question}}</h5>
+<small>Posted on {{question.date.strftime('%d-%m-%Y/%H:%M')}}<br> Posted by: {{question.user.username}}</small><br>
+<a href="{{url_for('faqs.ans_q' , q_id = q_id)}}">Answer the q</a>
+<br><br>
+<h1>Answers</h1>
+{%for answer in ans%}
+<div class="container">
+  <h6>{{answer.answer}}</h6>
+  <small>Posted on {{answer.date.strftime('%d-%m-%Y/%H:%M')}}<br> Posted by: {{answer.user.username}}</small>
+  <a href="{{url_for('faqs.liun' , type = 'like', a_id = answer.id , q_id = q_id)}}"><i class="fas fa-thumbs-up"></i></a>{{like.pop(0)}}
+  <a href="{{url_for('faqs.liun' , type = 'unlike', a_id = answer.id , q_id = q_id)}}"><i class="fas fa-thumbs-down"></i></a>{{unlike.pop(0)}}
+</div>
+
+{%endfor%}
+{%endblock%}
