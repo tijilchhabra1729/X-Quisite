@@ -16,7 +16,8 @@ def all_faq():
         searcher = []
         if ' ' in form.search.data:
             search = form.search.data.split()
-            print(search)
+        else:
+            search = [form.search.data]
         for q in question:
             n = 0
             for s in search:
