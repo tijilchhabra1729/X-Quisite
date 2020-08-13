@@ -385,13 +385,29 @@ a:hover{
 	transition-delay: 0.2s;
 }
 
-
 .open-up{
   display: none;
 position: fixed;
 bottom: 0;
 right: 0;
 z-index: 16;
+}
+.gap {
+  margin-left: 5%;
+  font-size: 90%;
+  background-color: green;
+  outline: none !important;
+  border: none !important;
+}
+.gap:hover {
+  background-color: darkgreen;
+  color: #000;
+  outline: none !important;
+  border: none !important;
+  transition: 0.3s;
+}
+.noli {
+  list-style-type: none !important;
 }
 .cancel{
   background-color: red !important;
@@ -401,25 +417,56 @@ z-index: 16;
   outline: none !important;
   border: none !important;
   top: 0 !important;
-  width: 100% !important;
+  width: 350;
 }
 #ifrm {
   padding: 0.7em !important;
   z-index: 15;
   cursor: pointer;
-  position: fixed;
   bottom: 1vh;
+  position: absolute;
   font-size: 165%;
   border: 1px solid rgb(199, 199, 199) !important;
   right: 1vw;
 }
-#ifrm:hover{
-    background-color: green;
-    transition: 0.5s;
-}
+
 .clicks{
   font-family: 'Josefin Sans', sans-serif;
   font-size: 20px;
   padding-top: 5px ;
   float: right;
+}
+#if-faq{
+  padding: 0.7em !important;
+  z-index: 15;
+  cursor: pointer;
+  bottom: 1vh;
+  position: absolute;
+  font-size: 165%;
+  border: 1px solid rgb(199, 199, 199) !important;
+  right: 1vw;
+}
+#blur.active {
+  filter: blur(5px);
+  pointer-events: none;
+  user-select: none;
+}
+#pop{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  border: 2px solid rgb(189, 189, 189);
+  transform: translate(-50%,-50%);
+  justify-content: center;
+  align-items: center;
+  width: 45%;
+  height: 70%;
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.5s;
+}
+#pop.active {
+  visibility: visible;
+  opacity: 1;
+  transition: 0.5s;
 }

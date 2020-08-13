@@ -1,7 +1,7 @@
 {%extends 'base.htm'%}
 {%block content%}\
-<br><br><br>
-<form method="POST">
+
+<form method="POST" style="margin: 10%; justify-content: center; align-items: center;">
   {{form.hidden_tag()}}
   <div class="form-group">
     {{form.question.label}}{{form.question(class = 'form-control col-md-6' ,placeholder="Question" )}}

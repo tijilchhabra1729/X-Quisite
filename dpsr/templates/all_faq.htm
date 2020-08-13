@@ -1,15 +1,30 @@
 {%extends 'base.htm'%}
 {%block content%}
-<form method="POST" style="margin-top: 3%;">
+
+<form method="POST" style="margin-top: 3%;justify-content: center; align-items: center;">
   <center>
   {{form.hidden_tag()}}
   <div class="form-group" >
-     {{form.search(class = 'form-control col-md-4 bar' ,placeholder="Type...." )}}
+     {{form.search(class = 'form-control col-md-4 bar' ,placeholder="Search...." )}}
   </div>
-  <div class="form-group">
-    {{form.submit(class ="btn btn-primary")}} <a href="{{url_for('faqs.all_faq')}}" class = 'btn btn-primary'>Refresh</a>
+  <div class="form-group" style="font-size: larger; margin-bottom: 4%;">
+    {{form.submit(class ="btn btn-primary gap")}} <a href="{{url_for('faqs.all_faq')}}" class = 'btn btn-primary gap'>Refresh</a>
+ <br><br>  
   </div></center>
 </form>
+
+<div class="paint" id="if-faq" onclick="openPop()">
+  <span>Ask Your Question</span>
+  </div>
+  <div id="add-q" class="animate__animated animate__slideInUp open-up" >
+  
+    <iframe width="450" height="650" style="bottom: 0; right: 0; position: fixed;" 
+    src="{{url_for('cars.make_car')}}" title="Add A Car">
+  </iframe>
+  <button style="width: 100%; float: left !important;" class="btn btn-primary cancel" onclick="closePop()">Close</button>
+  </div>
+  
+
 <div class="container" style="display: inline-block;">
   {%for result in results%}
   
@@ -23,5 +38,14 @@
 
   {%endfor%}
 </div>
+</div>
+<script>
+  function openPop() {
+    document.getElementById("add-q").style.display = "flex";
+  }
 
+  function closePop() {
+    document.getElementById("add-q").style.display = "none";
+  }
+  </script>
 {%endblock%}

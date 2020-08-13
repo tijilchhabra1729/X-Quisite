@@ -2,34 +2,41 @@
 {%extends 'base.htm'%}
 
 {%block content%}
-<br><br><br>
-<div class="start" id="ifrm" src="{{url_for('static', filename="jk.png")}}" onclick="openPop()">
+
+<div class="paint" id="ifrm" onclick="openPop()">
 <span>Add Your Car</span>
 </div>
-<div style="flex-direction: column;" id="add-car" class="animate__animated animate__slideInUp open-up" >
-  <button style="width: 100%; float: left;" class="btn btn-primary cancel" onclick="closePop()">X</button>
+<div id="add-car" class="animate__animated animate__slideInUp open-up" >
 
-  <iframe width="450" height="650" style="bottom: 0; right: 0; position: fixed;"
+  <iframe width="450" height="650" style="bottom: 0; right: 0; position: fixed;" 
   src="{{url_for('cars.make_car')}}" title="Add A Car">
 </iframe>
+<button style="width: 100%; float: left !important;" class="btn btn-primary cancel" onclick="closePop()">Close</button>
 
 
 </div>
 
 
 <!--<h1> <a href="{{url_for('cars.make_car')}}">Add Car</a></h1> -->
-<form method="POST">
+<center>
+<form method="POST" style=" width: 50%; justify-content: center; align-items: center; font-size: x-large; margin-top: 3%;" >
+ 
+  <div style="display: flex; flex-direction: row; justify-content: center; ">
   {{form.hidden_tag()}}
-  <div class="form-group">
-    {{form.seats.label}}{{form.seats( class = 'form-control col-md-1' ,placeholder="Seats" )}}
+  <div class="form-group" >
+    {{form.seats.label}}{{form.seats( class = 'form-control col-md-6' ,placeholder="Seats" )}}
   </div>
   <div class="form-group">
-    {{form.driver.label}}{{form.driver()}}
-  </div>
+    {{form.driver.label}}{{form.driver(class = "noli")}}
+  </div></div>
   <div class="form-group">
-    {{form.submit(class ="btn btn-primary")}} <a href="{{url_for('cars.show_car')}}" class = 'btn btn-primary'>Refresh</a>
+    {{form.submit(class ="btn btn-primary gap")}} <a href="{{url_for('cars.show_car')}}" class = 'btn btn-primary gap'>Refresh</a>
   </div>
 </form>
+
+</center>
+
+
 {%for r in car%}
 
 
@@ -39,7 +46,7 @@
       </div>
       <div class="detail">
         <h3 style="  color: darkgreen;" class="card-title" >
-          Price :- ₹{{r.price}}(per day)</h3><br>
+          Price :- {{r.price}} USD(per day)</h3><br>
 
         <p style="font-size: larger; color: rgb(78, 78, 78);" class="card-text">Driver Availability: {{r.driver}}
     <br>
@@ -51,13 +58,13 @@
 
 {%endfor%}
 
-    <script>
-      function openPop() {
-        document.getElementById("add-car").style.display = "flex";
-      }
+<script>
+  function openPop() {
+    document.getElementById("add-car").style.display = "flex";
+  }
 
-      function closePop() {
-        document.getElementById("add-car").style.display = "none";
-      }
-      </script>
+  function closePop() {
+    document.getElementById("add-car").style.display = "none";
+  }
+  </script>
 {%endblock%}
