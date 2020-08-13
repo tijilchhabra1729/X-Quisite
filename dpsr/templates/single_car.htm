@@ -5,6 +5,7 @@
   Name = {{car.name}} <br>
   No. of Seats = {{car.seats}} <br>
   Price = {{car.price}}(per day) <br>
+  <a  href="{{url_for('cars.index', car_id=car.id)}}">Click here to rent.</a>
   <a href="{{url_for('static' , filename = car.car_image)}}">
   <img style="height:300px; width:350px;" src="{{url_for('static' , filename = car.car_image)}}" class="card-img-top" alt="image can't load">
 </a><br>
