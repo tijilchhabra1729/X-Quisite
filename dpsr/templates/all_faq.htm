@@ -1,13 +1,14 @@
 {%extends 'base.htm'%}
 {%block content%}
-<form method="POST" >
+<form method="POST" style="margin-top: 3%;">
+  <center>
   {{form.hidden_tag()}}
-  <div class="form-group" style="display: flex; flex-direction: row;">
-    {{form.search.label(class = 'searching')}}{{form.search(class = 'form-control col-md-5 bar' ,placeholder="Search" )}}
+  <div class="form-group" >
+     {{form.search(class = 'form-control col-md-4 bar' ,placeholder="Type...." )}}
   </div>
   <div class="form-group">
-    {{form.submit(class ="btn btn-primary")}} <a href="{{url_for('faqs.all_faq')}}" class = 'btn btn-primary'>Refresh</a>
-  </div>
+    {{form.submit(class ="btn btn-primary start")}} <a href="{{url_for('faqs.all_faq')}}" class = 'btn btn-primary start'>Refresh</a>
+  </div></center>
 </form>
 <div class="container" style="display: inline-block;">
   {%for result in results%}
