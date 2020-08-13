@@ -2,8 +2,21 @@
 
 {%block content%}
 <br><br><br>
-<h1>
-<a href="{{url_for('cars.make_car')}}">Add Car</a></h1>
+<div id="chat-btn" class="paint" src="{{url_for('static', filename="jk.png")}}" alt="Our Chatty Bot is not loading" onclick="openBot()">
+<span>Add Your Car</span>
+</div>
+<div style="flex-direction: column;" id="myBot" class="animate__animated animate__slideInUp open-up" >
+  <button style="width: 100%; float: left;" class="btn btn-primary cancel" onclick="closeBot()">X</button>
+
+  <iframe width="450" height="650" style="bottom: 0; right: 0; position: fixed;" 
+  src="{{url_for('cars.make_car')}}" title="Add Car">
+</iframe>
+
+
+</div>
+
+
+<!--<h1> <a href="{{url_for('cars.make_car')}}">Add Car</a></h1> -->
 <form method="POST">
   {{form.hidden_tag()}}
   <div class="form-group">
@@ -17,7 +30,7 @@
   </div>
 </form>
 {%for r in car%}
-<div style="display: inline-block;">
+<!-- <div style="display: inline-block;">
     <div class="card" style="width: 20rem; display:inline-block; padding: 1em;">
       <a class="card-title"><h3 style="font-weight: 800;">{{r.name}}</h3></a>
       <a href="{{url_for('static' , filename = r.car_image)}}">
@@ -31,6 +44,32 @@
     <h6>Contact {{r.user.username}}</h3>
       <h6>email {{r.user.email}}</h6>
     <a href="{{url_for('cars.single_car' , car_id = r.id)}}">Read More</a>
-  </div></div>
+  </div></div> -->
+
+    <div class="single" style="display: inline-block;">
+      <div class="imgBx">
+        <img src="{{url_for('static' , filename = r.car_image)}}" alt="image can't load">
+      </div>
+      <div class="detail">
+        <h3 style="  color: darkgreen;" class="card-title" >
+          Price :- ₹{{r.price}}(per day)</h3><br>
+
+        <p style="font-size: larger; color: rgb(78, 78, 78);" class="card-text">Does it come with driver : {{r.driver}}
+    <br>
+        Contact: {{r.user.username}}<br>
+        Email: {{r.user.email}}<br></p><br>
+        <a style="color: black; font-size: larger; padding: 1em;" class="paint" href="{{url_for('cars.single_car' , car_id = r.id)}}"><span> Read More</span></a>
+      </div>
+    </div>
+
+    <script>
+      function openBot() {
+        document.getElementById("myBot").style.display = "flex";
+      }
+    
+      function closeBot() {
+        document.getElementById("myBot").style.display = "none";
+      }
+      </script>
 {%endfor%}
 {%endblock%}

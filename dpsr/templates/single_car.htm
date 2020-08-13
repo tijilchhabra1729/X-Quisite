@@ -1,18 +1,20 @@
 {%extends 'base.htm'%}
 
 {%block content%}
-<div class="container">
+<div class="container" style="display: flex; flex-direction: row; margin: 10%;">
+  <img style="height:400px; width:450px;" src="{{url_for('static' , filename = car.car_image)}}" class="card-img-top" alt="image can't load">
+<div style="margin-left: 20%; font-size: xx-large;">
   Name = {{car.name}} <br>
   No. of Seats = {{car.seats}} <br>
   Price = {{car.price}}(per day) <br>
-  <a href="{{url_for('static' , filename = car.car_image)}}">
-  <img style="height:300px; width:350px;" src="{{url_for('static' , filename = car.car_image)}}" class="card-img-top" alt="image can't load">
-</a><br>
+  
+<br>
   Driver = {{car.driver}} <br>
   Available = {{car.available}}<br>
   {%if current_user == car.user%}
   <a href="{{url_for('cars.updatecar' , car_id = car.id)}}">Edit</a>
   {%endif%}
+</div>
 </div>
 
 {%endblock%}
