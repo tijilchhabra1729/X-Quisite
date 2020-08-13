@@ -21,7 +21,7 @@ def all_faq():
         for q in question:
             n = 0
             for s in search:
-                if s in q.question :
+                if s.lower() in q.question.lower() :
                     n+=1
             l = (n , q)
             searcher.append(l)

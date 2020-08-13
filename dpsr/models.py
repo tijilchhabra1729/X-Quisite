@@ -6,7 +6,9 @@ from flask_login import UserMixin
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(user_id)
-
+hotel_user = db.Table('hotel_user',
+  db.Column('user_id', db.Integer , db.ForeignKey('users.id')),
+  db.Column('hotel_id', db.Integer , db.ForeignKey('hotel.id')))
 class User(db.Model,UserMixin):
     __tablename__ = 'users'
 
@@ -18,6 +20,7 @@ class User(db.Model,UserMixin):
     password_hash = db.Column(db.String(128))
 
     car = db.relationship('Car' , backref = 'user' , lazy = 'dynamic')
+    hotel = db.relationship('Hotel' , secondary = hotel_user , backref = db.backref('user', lazy = 'dynamic'))
     question = db.relationship('Question' , backref = 'user' , lazy = 'dynamic')
     answer = db.relationship('Answer' , backref = 'user' , lazy = 'dynamic')
     likes = db.relationship('Like' , backref = 'user' , lazy = 'dynamic')
@@ -58,7 +61,7 @@ class Question(db.Model , UserMixin):
     __tablename__ = 'questions'
 
     id = db.Column(db.Integer , primary_key = True)
-    question = db.Column(db.Integer)
+    question = db.Column(db.String)
     date = db.Column(db.DateTime,nullable = False,default=datetime.now)
 
     userid = db.Column(db.Integer , db.ForeignKey('users.id'))
@@ -106,3 +109,24 @@ class Unlike(db.Model , UserMixin):
     def __init__(self,answerid,userid):
         self.answerid = answerid
         self.userid = userid
+
+class Hotel(db.Model , UserMixin):
+    __tablename__ = 'hotel'
+
+    id = db.Column(db.Integer , primary_key = 'True')
+    name = db.Column(db.Integer)
+    total_rooms = db.Column(db.Integer)
+    available_rooms = db.Column(db.Integer)
+    pool = db.Column(db.String)
+    restaurant = db.Column(db.String)
+    other = db.Column(db.String)
+    location = db.Column(db.String)
+
+    def __init__(self, name , total_rooms , available_rooms , pool , restaurant , other , location):
+        self.name = name
+        self.total_rooms = total_rooms
+        self.available_rooms = available_rooms
+        self.pool = pool
+        self.restaurant = restaurant
+        self.other = other
+        self.location = location

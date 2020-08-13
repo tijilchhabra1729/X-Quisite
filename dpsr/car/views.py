@@ -2,8 +2,8 @@ from flask import render_template,url_for,flash,redirect,request,Blueprint
 from flask_login import login_user, current_user, logout_user, login_required
 from dpsr import  db
 from dpsr.models import User , Car
-from dpsr.car.forms import MakeCarForm , UpdateCarForm
-from sqlalchemy import asc
+from dpsr.car.forms import MakeCarForm , UpdateCarForm , SearchCarForm
+from sqlalchemy import asc , desc
 from dpsr.car.picture_handler import add_car_pic
 
 cars = Blueprint('cars', __name__)
@@ -31,10 +31,26 @@ def make_car():
 @login_required
 def show_car():
     car = []
-    cars = Car.query.order_by(Car.seats.asc()).filter_by(available = 'Yes')
+    cars = []
+    form = SearchCarForm()
+    if form.validate_on_submit():
+        if form.driver.data and form.seats.data:
+            cars = Car.query.order_by(Car.price.asc()).filter_by(available = 'Yes' , seats = form.seats.data , driver = form.driver.data)
+            print(form.seats.data)
+            print(form.driver.data)
+        elif form.driver.data and form.seats.data is None:
+            cars = Car.query.order_by(Car.price.asc()).filter_by(available = 'Yes' ,  driver = form.driver.data)
+            print(form.driver.data)
+        elif form.seats.data and form.driver.data is None:
+            cars = Car.query.order_by(Car.price.asc()).filter_by(available = 'Yes' , seats = form.seats.data)
+            print(form.seats.data)
+        else:
+            cars = Car.query.order_by(Car.price.asc()).filter_by(available = 'Yes')
+    else:
+        cars = Car.query.order_by(Car.price.asc()).filter_by(available = 'Yes')
     for c in cars:
         car.append(c)
-    return render_template('all_car.htm' , car = car)
+    return render_template('all_car.htm' , car = car , form = form)
 
 @cars.route('/<car_id>/detail' , methods = ['GET' , 'POST'])
 @login_required
