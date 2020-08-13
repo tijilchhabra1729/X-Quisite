@@ -65,7 +65,7 @@
         <li><a class="paint" href="#"><span>Home</span></a></li>
         <li><a class="paint" href="#"><span>About</span></a></li>
         <li><a class="paint" href="#"><span>Discover</span></a></li>
-        <li><a class="paint" href="#"><span>FAQ</span></a></li>
+        <li><a class="paint" href="{{url_for('faqs.all_faq')}}"><span>FAQ</span></a></li>
         <li><a class="paint" href="#"><span>Contact</span></a></li>
         {%if current_user.is_authenticated%}
         <li><a  class="paint" href="{{url_for('cars.show_car')}}"><span>Cars</span></a></li>
@@ -101,7 +101,7 @@ if (navButton.classList.contains('active')) {
 navButton.addEventListener('click', openMenu, false);
 
 win.addEventListener('click',closeMenu, false);
-  
+
 </script>
 
   {%block content%}
