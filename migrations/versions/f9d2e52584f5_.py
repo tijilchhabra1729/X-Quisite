@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 4eb06cd41409
+Revision ID: f9d2e52584f5
 Revises: 
-Create Date: 2020-08-13 15:47:17.548905
+Create Date: 2020-08-13 20:29:58.400767
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '4eb06cd41409'
+revision = 'f9d2e52584f5'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -28,6 +28,7 @@ def upgrade():
     sa.Column('restaurant', sa.String(), nullable=True),
     sa.Column('other', sa.String(), nullable=True),
     sa.Column('location', sa.String(), nullable=True),
+    sa.Column('description', sa.String(), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('users',
@@ -53,6 +54,16 @@ def upgrade():
     sa.ForeignKeyConstraint(['userid'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
+    op.create_table('dates',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('start_date', sa.DateTime(), nullable=True),
+    sa.Column('end_date', sa.DateTime(), nullable=True),
+    sa.Column('userid', sa.Integer(), nullable=True),
+    sa.Column('hotelid', sa.Integer(), nullable=True),
+    sa.ForeignKeyConstraint(['hotelid'], ['hotel.id'], ),
+    sa.ForeignKeyConstraint(['userid'], ['users.id'], ),
+    sa.PrimaryKeyConstraint('id')
+    )
     op.create_table('hotel_user',
     sa.Column('user_id', sa.Integer(), nullable=True),
     sa.Column('hotel_id', sa.Integer(), nullable=True),
@@ -70,8 +81,6 @@ def upgrade():
     op.create_table('answers',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('answer', sa.String(), nullable=True),
-    sa.Column('like', sa.Integer(), nullable=True),
-    sa.Column('unlike', sa.Integer(), nullable=True),
     sa.Column('date', sa.DateTime(), nullable=False),
     sa.Column('questionid', sa.Integer(), nullable=True),
     sa.Column('userid', sa.Integer(), nullable=True),
@@ -105,6 +114,7 @@ def downgrade():
     op.drop_table('answers')
     op.drop_table('questions')
     op.drop_table('hotel_user')
+    op.drop_table('dates')
     op.drop_table('cars')
     op.drop_index(op.f('ix_users_username'), table_name='users')
     op.drop_index(op.f('ix_users_email'), table_name='users')
