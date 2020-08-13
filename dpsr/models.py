@@ -19,12 +19,14 @@ class User(db.Model,UserMixin):
     username = db.Column(db.String(64),unique = True,index = True)
     password_hash = db.Column(db.String(128))
 
+
     car = db.relationship('Car' , backref = 'user' , lazy = 'dynamic')
     hotel = db.relationship('Hotel' , secondary = hotel_user , backref = db.backref('user', lazy = 'dynamic'))
     question = db.relationship('Question' , backref = 'user' , lazy = 'dynamic')
     answer = db.relationship('Answer' , backref = 'user' , lazy = 'dynamic')
     likes = db.relationship('Like' , backref = 'user' , lazy = 'dynamic')
     unlikes = db.relationship('Unlike' , backref = 'user' , lazy = 'dynamic')
+    dates = db.relationship('Hoteldate' , backref = 'user' , lazy = 'dynamic')
 
     def __init__(self, fname, email, username, password):
         self.email = email
@@ -74,8 +76,6 @@ class Answer(db.Model , UserMixin):
     __tablename__ = 'answers'
     id = db.Column(db.Integer , primary_key = True)
     answer = db.Column(db.String)
-    like = db.Column(db.Integer , default = 0)
-    unlike = db.Column(db.Integer , default = 0)
     date = db.Column(db.DateTime,nullable = False,default=datetime.now)
 
     questionid = db.Column(db.Integer , db.ForeignKey('questions.id'))
@@ -123,6 +123,8 @@ class Hotel(db.Model , UserMixin):
     other = db.Column(db.String)
     location = db.Column(db.String)
     description = db.Column(db.String)
+
+    dates = db.relationship('Hoteldate' , backref = 'hotel' , lazy = 'dynamic')
     def __init__(self, name , total_rooms , available_rooms , pool , restaurant , other , location , picture , description):
         self.name = name
         self.total_rooms = total_rooms
@@ -133,3 +135,19 @@ class Hotel(db.Model , UserMixin):
         self.location = location
         self.picture = picture
         self.description = description
+
+class Hoteldate(db.Model , UserMixin):
+    __tablename__ = 'dates'
+
+    id = db.Column(db.Integer , primary_key = True)
+    start_date = db.Column(db.DateTime)
+    end_date = db.Column(db.DateTime)
+
+    userid = db.Column(db.Integer , db.ForeignKey('users.id'))
+    hotelid = db.Column(db.Integer , db.ForeignKey('hotel.id'))
+
+    def __init__(self,start_date,end_date,userid,hotelid):
+        self.start_date = start_date
+        self.end_date = end_date
+        self.userid = userid
+        self.hotelid = hotelid
