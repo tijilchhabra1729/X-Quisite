@@ -3,7 +3,7 @@
 
 <div style="margin: 8%;">
   <div class="animate__animated animate__fadeInDown">
-<h1>{{question.question}}</h1>
+<h1>Question: {{question.question}} ?</h1>
 <h6>&nbsp; Posted on {{question.date.strftime('%d-%m-%Y/%H:%M')}}<br>&nbsp; Posted by: {{question.user.username}}</h6><br>
 <a class="linkie" style="font-size: x-large;color: green; border: 1px solid green; padding: 5px;" href="{{url_for('faqs.ans_q' , q_id = q_id)}}">
 Answer the question</a>
