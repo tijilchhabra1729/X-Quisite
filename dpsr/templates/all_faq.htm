@@ -7,18 +7,19 @@
      {{form.search(class = 'form-control col-md-4 bar' ,placeholder="Type...." )}}
   </div>
   <div class="form-group">
-    {{form.submit(class ="btn btn-primary start")}} <a href="{{url_for('faqs.all_faq')}}" class = 'btn btn-primary start'>Refresh</a>
+    {{form.submit(class ="btn btn-primary")}} <a href="{{url_for('faqs.all_faq')}}" class = 'btn btn-primary'>Refresh</a>
   </div></center>
 </form>
 <div class="container" style="display: inline-block;">
   {%for result in results%}
-  <a class="linkie" style="color: black;" href="{{url_for('faqs.singleq' , q_id = result.id)}}">
+  
   <div class="jumbotron" style = "width: 20em; padding: 1em; background-color: rgba(0, 168, 0, 0.9);">
     <br>
+    <a class="linkie" style="color: black;" href="{{url_for('faqs.singleq' , q_id = result.id)}}">
     <h5 align = "center">{{result.question}}</h4>
-
+    </a>
     <br>
-  </div></a>
+  </div>
 
   {%endfor%}
 </div>
