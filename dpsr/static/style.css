@@ -9,6 +9,10 @@ html{
     padding: 0;
     box-sizing: border-box;
 }
+.link:hover{
+    color: green !important;
+    transition: 0.4s;
+}
 .paint {
     position: relative;
 display: inline-flex;
@@ -251,7 +255,21 @@ a:hover{
     height: 100vh;
     background-attachment: fixed; 
     background-size: cover;
-     background-color: white;
+   background-color: white;
+}
+.fa-thumbs-up{
+  color: grey;
+  margin: 1em;
+}
+.fa-thumbs-up:hover{
+  color: black;
+}
+.fa-thumbs-down{
+  color: grey;
+  margin: 1em;
+}
+.fa-thumbs-down:hover{
+  color: black;
 }
 #spill{
     width: 60%;
@@ -288,7 +306,7 @@ a:hover{
 	width: 400px;
 	height: 300px;
 	background: #000;
-	box-shadow: 0 0 6px 2px rgba(61, 61, 61, 0.5);
+	border: 1px solid rgb(200, 200, 200);
 }
 .single .imgBx
 {
