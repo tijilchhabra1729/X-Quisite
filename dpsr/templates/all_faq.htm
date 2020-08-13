@@ -1,22 +1,23 @@
 {%extends 'base.htm'%}
 {%block content%}
-<form method="POST">
+<form method="POST" >
   {{form.hidden_tag()}}
-  <div class="form-group">
-    {{form.search.label}}{{form.search(   class = 'form-control col-md-6' ,placeholder="Search" )}}
+  <div class="form-group" style="display: flex; flex-direction: row;">
+    {{form.search.label(class = 'searching')}}{{form.search(class = 'form-control col-md-5 bar' ,placeholder="Search" )}}
   </div>
   <div class="form-group">
     {{form.submit(class ="btn btn-primary")}} <a href="{{url_for('faqs.all_faq')}}" class = 'btn btn-primary'>Refresh</a>
   </div>
 </form>
-<div class="container border" style = "width:25rem;">
+<div class="container" style="display: inline-block;">
   {%for result in results%}
-  <div class="jumbotron" style = "height:16rem;">
+  <a class="linkie" style="color: black;" href="{{url_for('faqs.singleq' , q_id = result.id)}}">
+  <div class="jumbotron" style = "width: 20em; padding: 1em; background-color: rgba(0, 168, 0, 0.9);">
     <br>
-    <a href="{{url_for('faqs.singleq' , q_id = result.id)}}"><h5 align = "center">{{result.question}}</h4></a>
+    <h5 align = "center">{{result.question}}</h4>
 
-    <br><br>
-  </div>
+    <br>
+  </div></a>
 
   {%endfor%}
 </div>
