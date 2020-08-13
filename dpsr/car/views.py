@@ -8,6 +8,10 @@ from dpsr.car.picture_handler import add_car_pic
 
 cars = Blueprint('cars', __name__)
 
+public_key = 'pk_test_6pRNASCoBOKtIshFeQd4XMUh'
+
+stripe.api_key = "sk_test_BQokikJOvBiI2HlWgH4olfQ2"
+
 @cars.route('/makeit' , methods = ['GET' , 'POST'])
 @login_required
 def make_car():
@@ -96,3 +100,32 @@ def delete_car(car_id):
         db.session.delete(car)
         db.session.commit()
     return redirect(url_for('cars.show_car'))
+
+########## PAYMENTS ##################
+
+@cars.route('/<car_id>/index', methods=['GET','POST'])
+def index(car_id):
+    car = Car.query.get_or_404(car_id)
+    return render_template('payment1.html', public_key=public_key, car=car)
+
+@cars.route('/thankyou')
+def thankyou():
+    return render_template('thankyou.html')
+
+@cars.route('/payment', methods=['POST'])
+def payment():
+
+    # CUSTOMER INFORMATION
+    customer = stripe.Customer.create(email=request.form['stripeEmail'],
+                                      source=request.form['stripeToken'])
+
+    # CHARGE/PAYMENT INFORMATION
+    charge = stripe.Charge.create(
+        customer=customer.id,
+        amount=1999,
+        currency='inr',
+        description='Donation'
+    )
+
+    return redirect(url_for('cars.thankyou'))
+#####################################################
