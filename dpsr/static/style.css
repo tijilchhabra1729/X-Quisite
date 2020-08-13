@@ -9,6 +9,20 @@ html{
     padding: 0;
     box-sizing: border-box;
 }
+.linkie:hover{
+  color: white !important;
+  background-color: green;
+    transition: 0.4s !important;
+}
+.searching {
+  margin-top: 5%;
+}
+.bar{
+  margin: 5%;
+}
+.link {
+  color: #000;
+}
 .link:hover{
     color: green !important;
     transition: 0.4s;
@@ -262,14 +276,14 @@ a:hover{
   margin: 1em;
 }
 .fa-thumbs-up:hover{
-  color: black;
+  color: darkgreen;
 }
 .fa-thumbs-down{
   color: grey;
   margin: 1em;
 }
 .fa-thumbs-down:hover{
-  color: black;
+  color: darkgreen;
 }
 #spill{
     width: 60%;

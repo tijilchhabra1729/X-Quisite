@@ -5,8 +5,8 @@
   <div class="animate__animated animate__fadeInDown">
 <h1>{{question.question}}</h1>
 <h6>&nbsp; Posted on {{question.date.strftime('%d-%m-%Y/%H:%M')}}<br>&nbsp; Posted by: {{question.user.username}}</h6><br>
-<a class="link" style="font-size: x-large; padding: 1em; color: black;" href="{{url_for('faqs.ans_q' , q_id = q_id)}}">
-  <span>Answer the question</span> </a>
+<a class="linkie" style="font-size: x-large;color: green; border: 1px solid green; padding: 5px;" href="{{url_for('faqs.ans_q' , q_id = q_id)}}">
+Answer the question</a>
 <br><br>
 </div>
 <div class="animate__animated animate__fadeInLeft">
@@ -15,7 +15,7 @@
 <div class="container" style="margin-top: 3% !important; background-color: whitesmoke; height: fit-content; padding: 3%;">
   <h2>{{answer.answer}}</h2><br>
   <h6>Posted on {{answer.date.strftime('%d-%m-%Y/%H:%M')}}<br> Posted by: {{answer.user.username}}</h6>
-  <a href="{{url_for('faqs.liun' , type = 'like', a_id = answer.id , q_id = q_id)}}"><i class="fas fa-thumbs-up" ></i></a>{{like.pop(0)}}
+  <a href="{{url_for('faqs.liun' , type = 'like', a_id = answer.id , q_id = q_id)}}"><i class="fas fa-thumbs-up"></i></a>{{like.pop(0)}}
   <a href="{{url_for('faqs.liun' , type = 'unlike', a_id = answer.id , q_id = q_id)}}"><i class="fas fa-thumbs-down"></i></a>{{unlike.pop(0)}}
 </div>
 </div>
