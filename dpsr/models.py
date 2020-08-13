@@ -117,12 +117,13 @@ class Hotel(db.Model , UserMixin):
     name = db.Column(db.Integer)
     total_rooms = db.Column(db.Integer)
     available_rooms = db.Column(db.Integer)
+    picture = db.Column(db.String)
     pool = db.Column(db.String)
     restaurant = db.Column(db.String)
     other = db.Column(db.String)
     location = db.Column(db.String)
-
-    def __init__(self, name , total_rooms , available_rooms , pool , restaurant , other , location):
+    description = db.Column(db.String)
+    def __init__(self, name , total_rooms , available_rooms , pool , restaurant , other , location , picture , description):
         self.name = name
         self.total_rooms = total_rooms
         self.available_rooms = available_rooms
@@ -130,3 +131,5 @@ class Hotel(db.Model , UserMixin):
         self.restaurant = restaurant
         self.other = other
         self.location = location
+        self.picture = picture
+        self.description = description

@@ -1,0 +1,13 @@
+{%extends 'base.htm'%}
+{%block content%}
+<div class="container" style="height:25rem;">
+  <a href="{{url_for('static' , filename = hotel.picture)}}">
+  <img style="width:18rem;" src="{{url_for('static' , filename = hotel.picture)}}" class="card-img-top" alt="image can't load">
+</a><br>
+  {{hotel.name}}<br>
+  {{hotel.other}}<br>
+  Pool : {{hotel.pool}}<br>
+  Restaurant : {{hotel.restaurant}}<br>
+  <p>{{hotel.description}}</p>
+</div>
+{%endblock%}
