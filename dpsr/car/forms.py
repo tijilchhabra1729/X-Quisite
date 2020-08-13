@@ -25,6 +25,6 @@ class UpdateCarForm(FlaskForm):
     submit = SubmitField('Update')
 
 class SearchCarForm(FlaskForm):
-    seats = IntegerField('How many seats' )
-    driver = RadioField('Do you want car with driver' , choices=[('Yes','Yes'),('No','No')]  )
+    seats = IntegerField('No. of seats' )
+    driver = RadioField('Driver with car' , choices=[('Yes','Yes'),('No','No')]  )
     submit = SubmitField('Filter')
