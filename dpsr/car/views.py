@@ -5,6 +5,7 @@ from dpsr.models import User , Car
 from dpsr.car.forms import MakeCarForm , UpdateCarForm , SearchCarForm
 from sqlalchemy import asc , desc
 from dpsr.car.picture_handler import add_car_pic
+import stripe
 
 cars = Blueprint('cars', __name__)
 
