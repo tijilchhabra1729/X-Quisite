@@ -66,7 +66,7 @@
         <li><a class="paint" href="#"><span>About</span></a></li>
         <li><a class="paint" href="#"><span>Discover</span></a></li>
         <li><a class="paint" href="{{url_for('faqs.all_faq')}}"><span>FAQ</span></a></li>
-        <li><a class="paint" href="#"><span>Hotel</span></a></li>
+        <li><a class="paint" href="{{url_for('hotels.all_hotel')}}"><span>Hotel</span></a></li>
         <li><a  class="paint" href="{{url_for('cars.show_car')}}"><span>Cars</span></a></li>
         {%if current_user.is_authenticated%}
 
