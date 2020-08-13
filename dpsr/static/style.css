@@ -14,11 +14,10 @@ html{
   background-color: green;
     transition: 0.4s !important;
 }
-.searching {
-  margin-top: 5%;
-}
+
 .bar{
-  margin: 5%;
+  padding: 0 25px;
+  /* margin-left: 10%; */
 }
 .link {
   color: #000;
@@ -50,7 +49,7 @@ a:hover{
     height: 100%;
     background-image: url(btn.png);
     background-size: cover;
-    transform-origin: left;
+    transform-origin: right;
     transition: 0.5s;
 }
 .paint:hover:before{
@@ -404,13 +403,19 @@ z-index: 16;
   top: 0 !important;
   width: 100% !important;
 }
-#chat-btn {
-  padding: 1em;
+#ifrm {
+  padding: 0.7em !important;
   z-index: 15;
   cursor: pointer;
   position: fixed;
   bottom: 1vh;
+  font-size: 165%;
+  border: 1px solid rgb(199, 199, 199) !important;
   right: 1vw;
+}
+#ifrm:hover{
+    background-color: green;
+    transition: 0.5s;
 }
 .clicks{
   font-family: 'Josefin Sans', sans-serif;

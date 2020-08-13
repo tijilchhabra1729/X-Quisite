@@ -3,11 +3,11 @@
 
 {%block content%}
 <br><br><br>
-<div id="chat-btn" class="paint" src="{{url_for('static', filename="jk.png")}}" alt="Our Chatty Bot is not loading" onclick="openBot()">
+<div class="start" id="ifrm" src="{{url_for('static', filename="jk.png")}}" onclick="openPop()">
 <span>Add Your Car</span>
 </div>
-<div style="flex-direction: column;" id="myBot" class="animate__animated animate__slideInUp open-up" >
-  <button style="width: 100%; float: left;" class="btn btn-primary cancel" onclick="closeBot()">X</button>
+<div style="flex-direction: column;" id="add-car" class="animate__animated animate__slideInUp open-up" >
+  <button style="width: 100%; float: left;" class="btn btn-primary cancel" onclick="closePop()">X</button>
 
   <iframe width="450" height="650" style="bottom: 0; right: 0; position: fixed;"
   src="{{url_for('cars.make_car')}}" title="Add A Car">
@@ -41,11 +41,11 @@
         <h3 style="  color: darkgreen;" class="card-title" >
           Price :- ₹{{r.price}}(per day)</h3><br>
 
-        <p style="font-size: larger; color: rgb(78, 78, 78);" class="card-text">Does it come with driver : {{r.driver}}
+        <p style="font-size: larger; color: rgb(78, 78, 78);" class="card-text">Driver Availability: {{r.driver}}
     <br>
         Contact: {{r.user.username}}<br>
         Email: {{r.user.email}}<br></p><br>
-        <a style="color: black; font-size: larger; padding: 1em;" class="paint" href="{{url_for('cars.single_car' , car_id = r.id)}}"><span> Read More</span></a>
+        <a style=" color: black; font-size: larger; padding: 1em;" class="paint" href="{{url_for('cars.single_car' , car_id = r.id)}}"><span> Read More</span></a>
       </div>
     </div>
 

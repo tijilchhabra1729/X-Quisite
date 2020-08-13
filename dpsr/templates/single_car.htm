@@ -1,23 +1,26 @@
 {%extends 'base.htm'%}
 
 {%block content%}
-<div class="container" style="display: flex; flex-direction: row; margin: 10%;">
+<div class="container" style="display: flex; flex-direction: row; margin-left: 10%; margin-top: 10%; 
+height: max-content; ">
   <img style="height:400px; width:450px;" src="{{url_for('static' , filename = car.car_image)}}" class="card-img-top" alt="image can't load">
 <div style="margin-left: 20%; font-size: xx-large;">
   Name = {{car.name}} <br>
   No. of Seats = {{car.seats}} <br>
   Price = {{car.price}}(per day) <br>
 
-<br>
-  <a  href="{{url_for('cars.index', car_id=car.id)}}">Click here to rent.</a>
-  <a href="{{url_for('static' , filename = car.car_image)}}">
-  <img  src="{{url_for('static' , filename = car.car_image)}}" class="card-img-top" alt="image can't load">
-</a><br>
+
   Driver = {{car.driver}} <br>
-  Available = {{car.available}}<br>
+  Available = {{car.available}}<br><br>
+  <div style="display: flex; flex-direction: row;">
   {%if current_user == car.user%}
-  <a href="{{url_for('cars.updatecar' , car_id = car.id)}}">Edit</a>
+  <a class="link" style="border: 1px solid black; padding: 2%; width: 40%; height: min-content;" 
+  href="{{url_for('cars.updatecar' , car_id = car.id)}}">
+  <i class="fas fa-edit"></i>
+  Edit</a><br><br>
   {%endif%}
+  <a class="link" style="border: 1px solid black;padding: 2%; margin-left: 5%;height: min-content;" href="{{url_for('cars.index', car_id=car.id)}}">Rent Here</a>
+</div>
 </div>
 </div>
 
