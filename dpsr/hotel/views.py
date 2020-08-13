@@ -29,4 +29,4 @@ def book_hotel(hotel_id , start_date, end_date):
                     hotelid = hotel_id)
     db.session.add(date)
     db.session.commit()
-    return redirect(url_for('/allhotel'))
+    return redirect(url_for('hotels.all_hotel'))
