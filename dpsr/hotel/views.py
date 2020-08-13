@@ -3,6 +3,11 @@ from flask_login import login_user, current_user, logout_user, login_required
 from dpsr import  db
 from dpsr.models import Hotel , Hoteldate
 from sqlalchemy import desc,asc
+import stripe
+
+public_key = 'pk_test_6pRNASCoBOKtIshFeQd4XMUh'
+
+stripe.api_key = "sk_test_BQokikJOvBiI2HlWgH4olfQ2"
 
 hotels = Blueprint('hotels', __name__)
 
@@ -30,3 +35,32 @@ def book_hotel(hotel_id , start_date, end_date):
     db.session.add(date)
     db.session.commit()
     return redirect(url_for('hotels.all_hotel'))
+
+########## PAYMENTS ##################
+
+@hotels.route('/<hotel_id>/index', methods=['GET','POST'])
+def hotelpay(hotel_id):
+    hotel = Hotel.query.get_or_404(hotel_id)
+    return render_template('payment2.html', public_key=public_key, hotel=hotel)
+
+@hotels.route('/thankyou')
+def thankyou():
+    return render_template('thankyou.html')
+
+@hotels.route('/payment', methods=['POST'])
+def payment():
+
+    # CUSTOMER INFORMATION
+    customer = stripe.Customer.create(email=request.form['stripeEmail'],
+                                      source=request.form['stripeToken'])
+
+    # CHARGE/PAYMENT INFORMATION
+    charge = stripe.Charge.create(
+        customer=customer.id,
+        amount=1999,
+        currency='usd',
+        description='Book'
+    )
+
+    return redirect(url_for('hotels.thankyou'))
+#####################################################
