@@ -1,15 +1,25 @@
 {%extends 'base.htm'%}
 {%block content%}
+<center>
+<h1 style="margin-top: 3%;">Get to know about any of these top-rated hotels</h1>
+</center>
 {%for h in hotel%}
-  <div class="container" style="height:25rem;">
-    <a href="{{url_for('static' , filename = h.picture)}}">
-    <img style="width:18rem;" src="{{url_for('static' , filename = h.picture)}}" class="card-img-top" alt="image can't load">
-  </a><br>
-    {{h.name}}<br>
-    {{h.other}}<br>
+  
+
+  <div class="single" style="display: inline-block;">
+    <div class="imgBx">
+      <img src="{{url_for('static' , filename = h.picture)}}" alt="image can't load">
+    </div>
+    <div class="detail">
+      <h3 style="color: darkgreen;" class="card-title" >
+        {{h.name}}</h3><br>
+
+      <p style="font-size: larger; color: rgb(78, 78, 78); text-transform: uppercase;" class="card-text">
+        {{h.other}}<br>
     Pool : {{h.pool}}<br>
-    Restaurant : {{h.restaurant}}<br>
-    <a href="{{url_for('hotels.single_hotel' , hotel_id = h.id)}}" class = 'btn btn-primary'>Read more</a>
+    Restaurant : {{h.restaurant}}<br><br>
+    <a style=" color: black;padding: 1em;" class="paint" href="{{url_for('hotels.single_hotel' , hotel_id = h.id)}}"><span> Read More</span></a>
+    </div>
   </div>
 
 
