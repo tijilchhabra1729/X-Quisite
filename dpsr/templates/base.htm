@@ -6,7 +6,7 @@
     {%block head%}
 
     {%endblock%}
-    
+
     <link rel="icon" href="{{url_for('static', filename="brand.png")}}">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"/>
@@ -64,7 +64,7 @@
       <ul>
         <li><a class="paint" href="{{url_for('home.index')}}"><span>Home</span></a></li>
         <li><a class="paint" href="#"><span>About</span></a></li>
-        <li><a class="paint" href="{{url_for('tours.vc')}}"><span>Virtual Tour</span></a></li>
+        <li><a class="paint" href="{{url_for('tours.vc' , team = 'team')}}"><span>Virtual Tour</span></a></li>
         <li><a class="paint" href="{{url_for('faqs.all_faq')}}"><span>FAQ</span></a></li>
         <li><a class="paint" href="{{url_for('hotels.all_hotel')}}"><span>Hotel</span></a></li>
         <li><a  class="paint" href="{{url_for('cars.show_car')}}"><span>Cars</span></a></li>
