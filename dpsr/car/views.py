@@ -123,7 +123,7 @@ def payment():
     charge = stripe.Charge.create(
         customer=customer.id,
         amount=1999,
-        currency='inr',
+        currency='usd',
         description='Donation'
     )
 
