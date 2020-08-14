@@ -23,11 +23,12 @@ def all_faq():
             for s in search:
                 if s.lower() in q.question.lower() :
                     n+=1
-            l = (n , q)
+            l = (n , q.id)
             searcher.append(l)
         searcher.sort(reverse=True)
         for s , q in searcher:
-            results.append(q)
+            q1 = Question.query.get(q)
+            results.append(q1)
 
     else:
         for q in question:
@@ -76,7 +77,7 @@ def ans_q(q_id):
                         questionid = q_id)
         db.session.add(answer)
         db.session.commit()
-        return redirect(url_for('faqs.answer' , q_id = q_id))
+        return redirect(url_for('faqs.ans_q' , q_id = q_id))
 
     return render_template('answer.htm' , form = form)
 
