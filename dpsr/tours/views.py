@@ -14,11 +14,9 @@ twilio_account_sid = os.environ.get('TWILIO_ACCOUNT_SID')
 twilio_api_key_sid = os.environ.get('TWILIO_API_KEY_SID')
 twilio_api_key_secret = os.environ.get('TWILIO_API_KEY_SECRET')
 
-@tours.route('/<team>/vc', methods=['GET','POST'])
+@tours.route('/vc', methods=['GET','POST'])
 @login_required
-def vc(team):
-    if team is None:
-        abort(403) 
+def vc():
     return render_template('vc.html' )
 
 
