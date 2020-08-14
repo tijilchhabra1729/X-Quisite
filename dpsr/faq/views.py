@@ -44,7 +44,7 @@ def ask_q():
                     userid = current_user.id)
         db.session.add(q)
         db.session.commit()
-        return redirect(url_for('faqs.all_faq'))
+        return redirect(url_for('faqs.ask_q'))
     return render_template('makeq.htm' , form = form)
 
 @faqs.route('/<q_id>/singleq' , methods = ['GET' , 'POST'])
@@ -76,7 +76,7 @@ def ans_q(q_id):
                         questionid = q_id)
         db.session.add(answer)
         db.session.commit()
-        return redirect(url_for('faqs.singleq' , q_id = q_id))
+        return redirect(url_for('faqs.answer' , q_id = q_id))
 
     return render_template('answer.htm' , form = form)
 
