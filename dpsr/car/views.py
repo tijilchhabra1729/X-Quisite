@@ -28,7 +28,6 @@ def make_car():
                   car_image = pic)
         db.session.add(car)
         db.session.commit()
-        return redirect(url_for('cars.show_car'))
     return render_template('car.htm' , form = form)
 
 
