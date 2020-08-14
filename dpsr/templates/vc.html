@@ -1,11 +1,95 @@
 {%extends 'base.htm'%}
 {%block head%}
 <style media="screen">
+    iframe {
+  vertical-align: middle;
+}
+
+.contain {
+  position: relative;
+}
+
+.mySlides {
+  display: none;
+}
+
+.cursor {
+  cursor: pointer;
+}
+
+.prev,
+.next {
+  cursor: pointer;
+  position: absolute;
+  top: 40%;
+  width: auto;
+  padding: 16px;
+  margin-top: -50px;
+  color: black;
+  background-color: white;
+  font-weight: bold;
+  font-size: 20px;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+.prev:hover,
+.next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white !important;
+}
+
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.column {
+  float: left;
+  /* width: 16.66%; */
+  width: 20% ;
+  overflow-x:hidden !important;
+
+}
+
+.demo {
+  opacity: 0.6;
+  overflow:hidden !important;
+  width: 100%;
+}
+
+.active,
+.demo:hover {
+  opacity: 1;
+  overflow:hidden !important;
+  width: 100%;
+}
+
   .container {
       margin-top: 20px;
       width: 100%;
       display: flex;
       flex-wrap: wrap;
+  }
+  #container {
+      margin-bottom: 3%;
   }
   .participant {
       margin-bottom: 5px;
@@ -40,21 +124,25 @@
 {%endblock%}
 {%block content%}
 <body>
-    <h1></h1>
+    <center>
+    <h1 style="margin-top: 3%;">Welcome to Our Virtual Tour</h1><br>
     <form>
         <label for="username">Name: </label>
         <input type="text" name=”username” id="username" disabled = disabled value = {{current_user.username}}>
-        <button id="join_leave">Join call</button>
-        <button id="share_screen" disabled>Share screen</button>
+        <button id="join_leave" class="btn btn-primary gap">Join call</button>
+        <a href ="#virtual" class="btn btn-primary gap">Jump To The View</a>
+        <button id="share_screen" class="btn btn-primary gap" disabled>Share screen</button>
+        
     </form>
-    <p id="count">Disconnected.</p>
+    <p style="margin-top: 3%;" id="count">Disconnected.</p>
     <div id="container" class="container">
         <div id="local" class="participant"><div></div><div class="label">Me</div></div>
         <!-- more participants will be added dynamically here -->
     </div>
-
-    <iframe src="https://momento360.com/e/u/ce5644cea9f64bcbafaa02edda479e1f?utm_campaign=embed&utm_source=other&heading=0&pitch=0&field-of-view=75"
-      width="600px" height="350px"></iframe>
+</center>
+<!-- <div id="virtual" style="margin: none;">
+    <iframe class="active" src="https://momento360.com/e/u/ce5644cea9f64bcbafaa02edda479e1f?utm_campaign=embed&utm_source=other&heading=0&pitch=0&field-of-view=75"
+      width="100%" height="950px"></iframe>
 
       <iframe src="https://momento360.com/e/u/3280054b588d42ef9022a1192ec8c176?utm_campaign=embed&utm_source=other&heading=0&pitch=0&field-of-view=75"
         width="600px" height="350px"></iframe>
@@ -63,8 +151,94 @@
           width="600px" height="350px"></iframe>
 
           <iframe src="https://momento360.com/e/u/96be6affa2194898a6b5b406a8985486?utm_campaign=embed&utm_source=other&heading=0&pitch=0&field-of-view=75" width="600px" height="350px"></iframe>
+       
+</div> -->
+
+<div class="contain" id= "virtual" style="overflow-x: hidden; margin-top: 3% !important;">
+    <div class="mySlides">
+      <div class="numbertext">1 / 4</div>
+      <iframe class="active" src="https://momento360.com/e/u/ce5644cea9f64bcbafaa02edda479e1f?utm_campaign=embed&utm_source=other&heading=0&pitch=0&field-of-view=75"
+      width="100%" height="950px"></iframe>
+    </div>
+  
+    <div class="mySlides">
+      <div class="numbertext">2 / 4</div>
+      <iframe src="https://momento360.com/e/u/3280054b588d42ef9022a1192ec8c176?utm_campaign=embed&utm_source=other&heading=0&pitch=0&field-of-view=75"
+      width="100%" height="950px"></iframe>
+  </div>
+  
+    <div class="mySlides">
+      <div class="numbertext">3 / 4</div>
+      <iframe src="https://momento360.com/e/u/9b0638cec0e94e01aea5f9c1468f0fac?utm_campaign=embed&utm_source=other&heading=0&pitch=0&field-of-view=75"
+      width="100%" height="950px"></iframe>
+</div>
+      
+    <div class="mySlides">
+      <div class="numbertext">4 / 4</div>
+      <iframe src="https://momento360.com/e/u/96be6affa2194898a6b5b406a8985486?utm_campaign=embed&utm_source=other&heading=0&pitch=0&field-of-view=75"
+      width="100%" height="950px"></iframe>
+    </div>
+  
+    
+      
+    <a class="prev" onclick="plusSlides(-1)">❮</a>
+    <a class="next" onclick="plusSlides(1)">❯</a>
+  
+   
+    <div class="row">
+      <div class="column">
+        <iframe class="demo cursor" src="https://momento360.com/e/u/ce5644cea9f64bcbafaa02edda479e1f?utm_campaign=embed&utm_source=other&heading=0&pitch=0&field-of-view=75"
+      width="100%" onclick="currentSlide(1)"></iframe>
+      </div>
+      <div class="column">
+        <iframe class="demo cursor" src="https://momento360.com/e/u/3280054b588d42ef9022a1192ec8c176?utm_campaign=embed&utm_source=other&heading=0&pitch=0&field-of-view=75"
+      width="100%" onclick="currentSlide(2)" ></iframe>
+      </div>
+      <div class="column">
+        <iframe class="demo cursor" src="https://momento360.com/e/u/9b0638cec0e94e01aea5f9c1468f0fac?utm_campaign=embed&utm_source=other&heading=0&pitch=0&field-of-view=75"
+      width="100%" onclick="currentSlide(3)"></iframe>
+      </div>
+      <div class="column">
+        <iframe src="https://momento360.com/e/u/96be6affa2194898a6b5b406a8985486?utm_campaign=embed&utm_source=other&heading=0&pitch=0&field-of-view=75"
+        width="100%" class="demo cursor"  onclick="currentSlide(4)"></iframe>
+      </div>
+      
+    </div>
+  </div>
+  
+
+
         </body>
 
     <script src="//media.twiliocdn.com/sdk/js/video/releases/2.3.0/twilio-video.min.js"></script>
     <script src="{{ url_for('static', filename='app.js') }}"></script>
+    <script>
+        var slideIndex = 1;
+        showSlides(slideIndex);
+        
+        function plusSlides(n) {
+          showSlides(slideIndex += n);
+        }
+        
+        function currentSlide(n) {
+          showSlides(slideIndex = n);
+        }
+        
+        function showSlides(n) {
+          var i;
+          var slides = document.getElementsByClassName("mySlides");
+          var dots = document.getElementsByClassName("demo");
+          if (n > slides.length) {slideIndex = 1}
+          if (n < 1) {slideIndex = slides.length}
+          for (i = 0; i < slides.length; i++) {
+              slides[i].style.display = "none";
+          }
+          for (i = 0; i < dots.length; i++) {
+              dots[i].className = dots[i].className.replace(" active", "");
+          }
+          slides[slideIndex-1].style.display = "block";
+          dots[slideIndex-1].className += " active";
+        }
+        </script>
+        
 {%endblock%}

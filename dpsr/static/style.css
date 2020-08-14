@@ -265,7 +265,7 @@ a:hover{
 #about {
     display: flex;
     flex-direction: row;
-    height: 100vh;
+    height: 110vh;
     padding: 1%;
     background-attachment: fixed; 
     background-size: cover;
