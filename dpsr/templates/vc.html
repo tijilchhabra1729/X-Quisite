@@ -4,7 +4,20 @@
     iframe {
   vertical-align: middle;
 }
-
+.navigation-wrapper {
+    display: none;
+}
+#go {
+    position: fixed;
+    z-index: 990;
+    top: 1vh;
+    right: 1vh;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+    border-radius: 50%;
+    background-color: green;
+}
 .contain {
   position: relative;
 }
@@ -205,7 +218,7 @@
       
     </div>
   </div>
-  
+  <a id="go" href="{{url_for('home.index')}}"><i class="fas fa-home" style="color: white; font-size: 36px; text-align: center; justify-content: center; align-items: center;"></i></a>
 
 
         </body>
