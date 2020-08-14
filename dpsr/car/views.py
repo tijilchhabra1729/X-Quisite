@@ -108,11 +108,11 @@ def index(car_id):
     car = Car.query.get_or_404(car_id)
     return render_template('payment1.html', public_key=public_key, car=car)
 
-@cars.route('/thankyou')
+@cars.route('/thankyou' , methods = ['GET' , 'POST'])
 def thankyou():
     return render_template('thankyou.html')
 
-@cars.route('/payment', methods=['POST'])
+@cars.route('/payment', methods=['GET' , 'POST'])
 def payment():
 
     # CUSTOMER INFORMATION
